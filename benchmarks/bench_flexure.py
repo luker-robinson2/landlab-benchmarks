@@ -1,13 +1,11 @@
 import numpy as np
+from landlab import RasterModelGrid
 from landlab.components import Flexure
 
-from landlab import RasterModelGrid
 
-
-class TimeFlexure:
+class _FlexureBase:
     """Change number of loads while maintaining grid size."""
 
-    params = ([], [])
     param_names = ["grid_size", "n_loads"]
 
     def setup(self, size, n_loads):
@@ -28,9 +26,9 @@ class TimeFlexure:
         self.flex.subside_loads(self.loads, out=self.out)
 
 
-class FlexureOneLoad(TimeFlexure):
+class FlexureOneLoad(_FlexureBase):
     params = (list(2 ** np.arange(5, 11)), [1])
 
 
-class FlexureManyLoads(TimeFlexure):
+class FlexureManyLoads(_FlexureBase):
     params = ([2**8], list(2 ** np.arange(0, 11)))
