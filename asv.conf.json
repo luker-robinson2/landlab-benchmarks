@@ -116,6 +116,7 @@
         "rich-click": [""],
         "scipy": [""],
         "statsmodels": [""],
+        "threadpoolctl": [""],
         "xarray": [""]
 	},
 
