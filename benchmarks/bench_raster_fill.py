@@ -76,6 +76,7 @@ class TimeGraphQuantity:
             out,
         )
 
+
 class TimeRasterFill:
     params = [16, 32, 64, 128, 256, 512, 1024, 2048]
     param_names = ["n"]

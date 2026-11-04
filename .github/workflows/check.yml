@@ -1,0 +1,26 @@
+name: Check benchmarks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    # Smoke test only: every benchmark imports and runs once against landlab's
+    # master branch. Timings from shared CI runners are too noisy to compare.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install landlab (master) and asv
+        run: |
+          pip install "landlab @ git+https://github.com/landlab/landlab.git@master"
+          pip install asv nox
+
+      - name: Run each benchmark once
+        run: nox -s bench-check

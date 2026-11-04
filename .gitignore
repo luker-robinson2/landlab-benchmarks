@@ -1,1 +1,5 @@
 __pycache__/
+.asv/
+.nox/
+# asv clones landlab here when benchmarking across commits
+landlab/
